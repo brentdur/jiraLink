@@ -1,0 +1,23 @@
+Babel==2.2.0
+Flask==0.10.1
+Jinja2==2.8
+MarkupSafe==0.23
+Pygments==2.1
+Sphinx==1.3.5
+Werkzeug==0.11.3
+alabaster==0.7.7
+argparse==1.2.1
+docutils==0.12
+itsdangerous==0.24
+jira==1.0.3
+oauthlib==1.0.3
+pytz==2015.7
+requests==2.9.1
+requests-oauthlib==0.6.0
+requests-toolbelt==0.5.1
+six==1.10.0
+snowballstemmer==1.2.1
+sphinx-rtd-theme==0.1.9
+tlslite==0.4.9
+-e git+git@github.com:Doist/todoist-python.git@d2a86102f3fb35731b8aa1c7560c72bd69e487d7#egg=todoist_python-master
+wsgiref==0.1.2

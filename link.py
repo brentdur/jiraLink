@@ -3,10 +3,10 @@ from jira import JIRA
 import todoist
 
 # setup Jira
-jira = JIRA('https://circlelabs.atlassian.net', basic_auth=('admin', ''))
+jira = JIRA('https://circlelabs.atlassian.net', basic_auth=('admin', 'DiAbLe123@a'))
 
 # setup todoist 
-api = todoist.TodoistAPI('')
+api = todoist.TodoistAPI('5398516811118b9d66226c707781d1e64454a542')
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -92,4 +92,4 @@ def main():
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()

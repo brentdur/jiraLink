@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, json, Response
 from jira import JIRA
 import todoist
 
@@ -25,15 +25,36 @@ def todoist():
 	
 	issue = jira.search_issues('project = TODO AND "Todoist ID" ~ "'+ str(todoId) +'"')[0]
 	if type == 'item:completed':
-		jira.transition_issue(issue, '21')
+		jira.transition_issue(issue, '71')
 
 	if type == 'item:uncompleted':
-		jira.transition_issue(issue, '51')
+		jira.transition_issue(issue, '101')
 
 	if type == 'item:deleted':
 		issue.delete()
 
 	return ''
+
+@app.route('/test')
+def test():
+	issue = jira.issue('TODO-40')
+	trans = jira.transitions(issue)
+
+	return Response(json.dumps(trans), 200, {'Content-Type':'application/json'})
+	# from open
+	# to backlog = 11 someday
+	# to To Do = 21 next
+	# To Start = 31 today
+	# Unecssary = 81 complete
+	# 
+	# From next
+	# to Inprogress = 41 today
+	# to Done = 61 complete
+	# 
+	# From today
+	# to Done = 71
+	# 
+	# From done to open = 101
 
 @app.route('/jira', methods=['POST'])
 def main():
@@ -62,7 +83,7 @@ def main():
 		if trans['to_status'] == 'Done':
 			item = api.items.get_by_id(todoId)
 			item.complete()
-		elif trans['to_status'] == 'To Do':
+		elif trans['to_status'] == 'Open':
 			item = api.items.get_by_id(todoId)
 			item.uncomplete()
 

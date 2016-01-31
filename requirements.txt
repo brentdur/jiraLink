@@ -19,5 +19,4 @@ six==1.10.0
 snowballstemmer==1.2.1
 sphinx-rtd-theme==0.1.9
 tlslite==0.4.9
--e git+git@github.com:Doist/todoist-python.git@d2a86102f3fb35731b8aa1c7560c72bd69e487d7#egg=todoist_python-master
 wsgiref==0.1.2

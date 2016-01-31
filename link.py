@@ -1,12 +1,13 @@
 from flask import Flask, request, json, Response
 from jira import JIRA
 import todoist
+import perm
 
 # setup Jira
-jira = JIRA('https://circlelabs.atlassian.net', basic_auth=('admin', 'DiAbLe123@a'))
+jira = JIRA('https://circlelabs.atlassian.net', basic_auth=(perm.USERNAME, perm.PASSWORD))
 
 # setup todoist 
-api = todoist.TodoistAPI('5398516811118b9d66226c707781d1e64454a542')
+api = todoist.TodoistAPI(perm.TODOISTAPI)
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -74,9 +75,10 @@ def main():
 	if event != None:
 		if event.find('issue_created') != -1:
 			text = title + "\n" + desc
-			item = api.items.add(text, None)
-			todoId = item['id']
-			jira.issue(json['issue']['key']).update(customfield_10025=todoId)
+			if (todoId == None):
+				item = api.items.add(text, None)
+				todoId = item['id']
+				jira.issue(json['issue']['key']).update(customfield_10025=todoId)
 		elif event.find('issue_deleted') != -1:
 			item = api.items.get_by_id(todoId)
 			item.delete()

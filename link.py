@@ -15,7 +15,6 @@ app.config.from_object(__name__)
 
 @app.route('/', methods=['POST'])
 def todoist():
-	return ''
 	json = request.get_json()
 	todoId = json['event_data']['id']
 	print(json)
@@ -46,7 +45,6 @@ def todoist():
 
 @app.route('/test')
 def test():
-	return ''
 	issue = jira.issue('TODO-40')
 	trans = jira.transitions(issue)
 
@@ -68,7 +66,6 @@ def test():
 
 @app.route('/jira', methods=['POST'])
 def main():
-	return ''
 	json = request.get_json()
 
 	title = json['issue']['fields']['summary']

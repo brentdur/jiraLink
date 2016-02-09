@@ -17,7 +17,6 @@ app.config.from_object(__name__)
 
 @app.route('/', methods=['POST'])
 def todoist():
-	print('hi')
 	json = request.get_json()
 	todoId = json['event_data']['id']
 	print(json)
@@ -30,6 +29,9 @@ def todoist():
 			print('Adding Jira Issue')
 			new_issue = jira.create_issue(project='TODO', summary=text, customfield_10025=str(todoId), issuetype={'name':'Task'})
 		return ''
+	
+	if len(issue) == 0:
+		return 'No jira issue to act on'
 	
 	issue = issue[0]
 	if type == 'item:completed':

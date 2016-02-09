@@ -3,8 +3,8 @@ from jira import JIRA
 import todoist
 import perm
 import uuid
-import urllib3
-urllib3.disable_warnings()
+import logging
+logging.captureWarnings(True)
 
 # setup Jira
 jira = JIRA('https://circlelabs.atlassian.net', basic_auth=(perm.USERNAME, perm.PASSWORD))
@@ -17,6 +17,7 @@ app.config.from_object(__name__)
 
 @app.route('/', methods=['POST'])
 def todoist():
+	print('hi')
 	json = request.get_json()
 	todoId = json['event_data']['id']
 	print(json)

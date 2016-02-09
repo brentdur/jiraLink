@@ -32,7 +32,7 @@ def todoist():
 	
 	if len(issue) == 0:
 		return 'No jira issue to act on'
-	
+
 	issue = issue[0]
 	if type == 'item:completed':
 		print('Completing Jira Issue')
@@ -85,7 +85,8 @@ def main():
 	event = json.get('webhookEvent', None)
 	if event != None:
 		if event.find('issue_created') != -1:
-			text = title + "\n" + desc
+			# text = title + "\n" + desc
+			text = title
 			if (todoId == None):
 				print('Creating Todoist Issue')
 				unique = uuid.uuid4()

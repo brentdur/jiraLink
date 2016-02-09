@@ -23,11 +23,11 @@ def todoist():
 	text = json['event_data']['content']	
 
 	type = json['event_name']
-	issue = jira.search_issues('project = TODO AND "Todoist ID" ~ "'+ str(todoId) +'"')
+	issue = jira.search_issues('project = TEST AND "Todoist ID" ~ "'+ str(todoId) +'"')
 	if type == 'item:added':
 		if len(issue) == 0:
 			print('Adding Jira Issue')
-			new_issue = jira.create_issue(project='TODO', summary=text, customfield_10025=str(todoId), issuetype={'name':'Task'})
+			new_issue = jira.create_issue(project='TEST', summary=text, customfield_10025=str(todoId), issuetype={'name':'Task'})
 		return ''
 	
 	if len(issue) == 0:

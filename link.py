@@ -3,6 +3,8 @@ from jira import JIRA
 import todoist
 import perm
 import uuid
+import urllib3
+urllib3.disable_warnings()
 
 # setup Jira
 jira = JIRA('https://circlelabs.atlassian.net', basic_auth=(perm.USERNAME, perm.PASSWORD))
